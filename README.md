@@ -1,4 +1,6 @@
-# Mulero Polsterreinigung Onepager
+# Couchklar – Mobile Polsterreinigung (Onepager)
+
+Marke: **Couchklar** · Live-URL: https://mulero-polsterreinigung.vercel.app/
 
 Statische Onepager-Webseite für die mobile **Polster-, Sofa- und Matratzenreinigung** in Sprockhövel & Wuppertal.
 

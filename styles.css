@@ -1,5 +1,5 @@
 /* ============================================================
-   Mulero Polsterreinigung — Premium Design v2
+   Couchklar – Mobile Polsterreinigung — Premium Design
    Selbst gehostete Fonts, keine externen Requests (DSGVO-safe)
    ============================================================ */
 
@@ -21,17 +21,17 @@
 
 :root {
   color-scheme: light;
-  --ink: #0c2437;
-  --muted: #45607a;
-  --soft: #6e8aa3;
+  --ink: #0b2545;
+  --muted: #44607d;
+  --soft: #6d89a6;
   --bg: #f5f9fd;
   --bg-2: #eaf2fa;
   --panel: #ffffff;
-  --line: rgba(12, 36, 55, 0.1);
-  --blue: #1477c0;
-  --blue-deep: #0e5a94;
-  --aqua: #2fb8c6;
-  --grad: linear-gradient(120deg, #1477c0, #2fb8c6);
+  --line: rgba(11, 37, 69, 0.1);
+  --blue: #1da7e8;
+  --blue-deep: #0b2545;
+  --aqua: #00b8d9;
+  --grad: linear-gradient(120deg, #0f3f6e, #1da7e8);
   --green: #1faf5a;
   --green-deep: #17924a;
   --shadow-sm: 0 6px 18px rgba(12, 36, 55, 0.07);
@@ -220,17 +220,19 @@ table {
 
 .brand-mark {
   display: grid;
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   flex: 0 0 auto;
   place-items: center;
-  background: var(--grad);
-  border-radius: 13px;
-  box-shadow: 0 10px 24px rgba(20, 119, 192, 0.4);
-  color: #fff;
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: 0.98rem;
+}
+
+.brand-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.brand .accent {
+  color: var(--blue);
 }
 
 .brand strong,
@@ -363,7 +365,7 @@ table {
 .button-secondary {
   background: var(--grad);
   color: #fff;
-  box-shadow: 0 14px 30px rgba(20, 119, 192, 0.3);
+  box-shadow: 0 14px 30px rgba(29, 167, 232, 0.3);
 }
 
 .button-ghost {
@@ -402,7 +404,7 @@ table {
   right: -120px;
   width: 560px;
   height: 560px;
-  background: radial-gradient(circle, rgba(47, 184, 198, 0.3), transparent 65%);
+  background: radial-gradient(circle, rgba(0, 184, 217, 0.3), transparent 65%);
   animation: drift1 16s ease-in-out infinite;
 }
 
@@ -411,7 +413,7 @@ table {
   left: -160px;
   width: 620px;
   height: 620px;
-  background: radial-gradient(circle, rgba(20, 119, 192, 0.22), transparent 65%);
+  background: radial-gradient(circle, rgba(29, 167, 232, 0.22), transparent 65%);
   animation: drift2 20s ease-in-out infinite;
 }
 
@@ -434,39 +436,6 @@ table {
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 74%);
   -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 74%);
   pointer-events: none;
-}
-
-.hero-bubbles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.hero-bubbles span {
-  position: absolute;
-  bottom: -50px;
-  display: block;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(47, 184, 198, 0.22));
-  border: 1px solid rgba(47, 184, 198, 0.4);
-  opacity: 0;
-  animation: rise linear infinite;
-}
-
-.hero-bubbles span:nth-child(1) { left: 8%;  width: 14px; height: 14px; animation-duration: 12s; animation-delay: 0s; }
-.hero-bubbles span:nth-child(2) { left: 21%; width: 22px; height: 22px; animation-duration: 15s; animation-delay: 2.5s; }
-.hero-bubbles span:nth-child(3) { left: 34%; width: 10px; height: 10px; animation-duration: 10s; animation-delay: 5s; }
-.hero-bubbles span:nth-child(4) { left: 51%; width: 18px; height: 18px; animation-duration: 14s; animation-delay: 1s; }
-.hero-bubbles span:nth-child(5) { left: 63%; width: 12px; height: 12px; animation-duration: 11s; animation-delay: 6s; }
-.hero-bubbles span:nth-child(6) { left: 77%; width: 26px; height: 26px; animation-duration: 16s; animation-delay: 3.5s; }
-.hero-bubbles span:nth-child(7) { left: 89%; width: 12px; height: 12px; animation-duration: 10.5s; animation-delay: 7.5s; }
-.hero-bubbles span:nth-child(8) { left: 44%; width: 8px;  height: 8px;  animation-duration: 9s;  animation-delay: 8s; }
-
-@keyframes rise {
-  0% { transform: translateY(0); opacity: 0; }
-  8% { opacity: 0.75; }
-  85% { opacity: 0.35; }
-  100% { transform: translateY(-640px); opacity: 0; }
 }
 
 .hero-grid {
@@ -502,7 +471,7 @@ table {
   margin-bottom: 22px;
   padding: 9px 18px;
   background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(20, 119, 192, 0.25);
+  border: 1px solid rgba(29, 167, 232, 0.25);
   border-radius: 999px;
   box-shadow: var(--shadow-sm);
   color: var(--blue-deep);
@@ -642,50 +611,6 @@ table {
   50% { transform: translateY(-10px); }
 }
 
-/* ---------- Ribbon-Marquee ---------- */
-
-.marquee {
-  position: relative;
-  z-index: 3;
-  overflow: hidden;
-  margin: 8px 0 -14px;
-  padding: 15px 0;
-  background: linear-gradient(90deg, #0e5a94, #1477c0 45%, #2fb8c6);
-  box-shadow: 0 18px 40px rgba(14, 90, 148, 0.28);
-  transform: rotate(-1.2deg) scale(1.03);
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  gap: 34px;
-  align-items: center;
-  color: #fff;
-  font-family: var(--font-head);
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  animation: marquee 26s linear infinite;
-}
-
-.marquee-track span {
-  display: inline-flex;
-  align-items: center;
-  gap: 34px;
-}
-
-.marquee-track .star {
-  color: #a8e6ec;
-  font-size: 0.8rem;
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
 /* ---------- Trust bar ---------- */
 
 .trustbar {
@@ -717,7 +642,7 @@ table {
   height: 48px;
   flex: 0 0 auto;
   place-items: center;
-  background: linear-gradient(135deg, rgba(20, 119, 192, 0.12), rgba(47, 184, 198, 0.14));
+  background: linear-gradient(135deg, rgba(29, 167, 232, 0.12), rgba(0, 184, 217, 0.14));
   border-radius: 14px;
   color: var(--blue);
 }
@@ -747,8 +672,8 @@ table {
   margin-block: 10px;
   padding: 80px 0;
   background:
-    radial-gradient(700px 320px at 92% 0%, rgba(47, 184, 198, 0.12), transparent 60%),
-    radial-gradient(600px 300px at 0% 100%, rgba(20, 119, 192, 0.1), transparent 60%),
+    radial-gradient(700px 320px at 92% 0%, rgba(0, 184, 217, 0.12), transparent 60%),
+    radial-gradient(600px 300px at 0% 100%, rgba(29, 167, 232, 0.1), transparent 60%),
     linear-gradient(180deg, #ecf3fa, #e6eff8);
   border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 34px;
@@ -824,7 +749,7 @@ table {
 
 .feature-card:hover {
   transform: translateY(-8px);
-  border-color: rgba(20, 119, 192, 0.4);
+  border-color: rgba(29, 167, 232, 0.4);
   box-shadow: var(--shadow-md);
 }
 
@@ -834,7 +759,7 @@ table {
   height: 56px;
   place-items: center;
   margin-bottom: 18px;
-  background: linear-gradient(135deg, rgba(20, 119, 192, 0.12), rgba(47, 184, 198, 0.14));
+  background: linear-gradient(135deg, rgba(29, 167, 232, 0.12), rgba(0, 184, 217, 0.14));
   border-radius: 16px;
   color: var(--blue);
   transition: transform 240ms ease;
@@ -849,7 +774,7 @@ table {
   top: 20px;
   right: 20px;
   padding: 4px 10px;
-  background: rgba(47, 184, 198, 0.14);
+  background: rgba(0, 184, 217, 0.14);
   border-radius: 999px;
   color: #157d89;
   font-size: 0.72rem;
@@ -1087,7 +1012,7 @@ table {
   padding: 6px 15px;
   background: var(--grad);
   border-radius: 999px;
-  box-shadow: 0 8px 18px rgba(20, 119, 192, 0.4);
+  box-shadow: 0 8px 18px rgba(29, 167, 232, 0.4);
   color: #fff;
   font-family: var(--font-head);
   font-size: 0.74rem;
@@ -1118,8 +1043,8 @@ table {
 .price-note {
   max-width: 880px;
   padding: 20px 24px;
-  background: rgba(20, 119, 192, 0.07);
-  border: 1px solid rgba(20, 119, 192, 0.18);
+  background: rgba(29, 167, 232, 0.07);
+  border: 1px solid rgba(29, 167, 232, 0.18);
   border-radius: 16px;
   color: var(--muted);
 }
@@ -1204,7 +1129,7 @@ table {
   margin-bottom: 16px;
   background: var(--grad);
   border-radius: 50%;
-  box-shadow: 0 10px 24px rgba(20, 119, 192, 0.32);
+  box-shadow: 0 10px 24px rgba(29, 167, 232, 0.32);
   color: #fff;
   font-family: var(--font-head);
   font-weight: 800;
@@ -1235,7 +1160,7 @@ table {
 .area-chips li {
   padding: 10px 19px;
   background: var(--panel);
-  border: 1px solid rgba(20, 119, 192, 0.25);
+  border: 1px solid rgba(29, 167, 232, 0.25);
   border-radius: 999px;
   box-shadow: var(--shadow-sm);
   color: var(--blue-deep);
@@ -1275,7 +1200,7 @@ table {
   place-items: center;
   background: var(--grad);
   border-radius: 50%;
-  box-shadow: 0 10px 24px rgba(20, 119, 192, 0.32);
+  box-shadow: 0 10px 24px rgba(29, 167, 232, 0.32);
   color: #fff;
   font-family: var(--font-head);
   font-size: 1.4rem;
@@ -1310,7 +1235,7 @@ table {
 }
 
 .faq-list details[open] {
-  border-color: rgba(20, 119, 192, 0.4);
+  border-color: rgba(29, 167, 232, 0.4);
   box-shadow: var(--shadow-md);
 }
 
@@ -1338,7 +1263,7 @@ table {
   height: 32px;
   place-items: center;
   content: "+";
-  background: rgba(20, 119, 192, 0.1);
+  background: rgba(29, 167, 232, 0.1);
   border-radius: 50%;
   color: var(--blue);
   font-size: 1.25rem;
@@ -1368,8 +1293,8 @@ table {
   margin: 10px auto 34px;
   padding: 92px 0;
   background:
-    radial-gradient(760px 380px at 12% 0%, rgba(47, 184, 198, 0.3), transparent 58%),
-    radial-gradient(900px 480px at 92% 100%, rgba(20, 119, 192, 0.42), transparent 62%),
+    radial-gradient(760px 380px at 12% 0%, rgba(0, 184, 217, 0.3), transparent 58%),
+    radial-gradient(900px 480px at 92% 100%, rgba(29, 167, 232, 0.42), transparent 62%),
     linear-gradient(135deg, #0d345a 0%, #0c2437 100%);
   border-radius: 36px;
   box-shadow: 0 34px 90px rgba(12, 36, 55, 0.35);
@@ -1437,7 +1362,7 @@ table {
 .cta-phone a {
   color: #fff;
   font-weight: 800;
-  border-bottom: 2px solid rgba(47, 184, 198, 0.6);
+  border-bottom: 2px solid rgba(0, 184, 217, 0.6);
 }
 
 /* ---------- Footer ---------- */
@@ -1536,7 +1461,7 @@ table {
 }
 
 :focus-visible {
-  outline: 3px solid rgba(20, 119, 192, 0.55);
+  outline: 3px solid rgba(29, 167, 232, 0.55);
   outline-offset: 3px;
 }
 
@@ -1567,8 +1492,9 @@ table {
   }
 
   .trustbar-inner {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     padding: 28px 32px;
+    gap: 20px 24px;
   }
 
   .band {
@@ -1630,9 +1556,6 @@ table {
     padding: 10px;
   }
 
-  .marquee {
-    margin-top: 2px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1652,7 +1575,4 @@ table {
     transform: none;
   }
 
-  .hero-bubbles {
-    display: none;
-  }
 }

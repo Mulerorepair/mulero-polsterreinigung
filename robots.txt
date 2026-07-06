@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /angebot-erhalten
+
+Sitemap: https://mulero-polsterreinigung.vercel.app/sitemap.xml

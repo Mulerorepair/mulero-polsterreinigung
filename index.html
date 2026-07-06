@@ -209,6 +209,11 @@
 
     <main id="main">
       <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+        <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+        <div class="hero-bubbles" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
         <div class="wrap">
           <div class="hero-grid">
             <div class="hero-content">
@@ -248,6 +253,14 @@
                       <stop offset="0" stop-color="#c9e0f2"/>
                       <stop offset="1" stop-color="#a9cbe8"/>
                     </linearGradient>
+                    <linearGradient id="shineG" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+                      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.55"/>
+                      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+                    </linearGradient>
+                    <clipPath id="sofaClip">
+                      <rect x="118" y="148" width="364" height="188" rx="22"/>
+                    </clipPath>
                   </defs>
 
                   <rect x="0" y="0" width="640" height="308" fill="url(#wall)"/>
@@ -319,6 +332,15 @@
                     <circle cx="572" cy="340" r="9" fill="#0e5a94"/>
                   </g>
 
+                  <!-- Glanz-Sweep über das Sofa -->
+                  <g clip-path="url(#sofaClip)">
+                    <g transform="skewX(-16)">
+                      <rect y="130" width="90" height="220" fill="url(#shineG)">
+                        <animate attributeName="x" values="40;620;620" keyTimes="0;0.38;1" dur="6.5s" repeatCount="indefinite"/>
+                      </rect>
+                    </g>
+                  </g>
+
                   <!-- Glanz-Sterne -->
                   <g fill="#2fb8c6">
                     <path d="M258 112 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 Z">
@@ -380,6 +402,13 @@
         </div>
       </section>
 
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Sofa <em class="star">✦</em> Ecksofa <em class="star">✦</em> Matratze <em class="star">✦</em> Sessel <em class="star">✦</em> Teppich <em class="star">✦</em> Festpreis nach Foto <em class="star">✦</em> Anfahrt inklusive <em class="star">✦</em> Wochenendtermine <em class="star">✦</em></span>
+          <span>Sofa <em class="star">✦</em> Ecksofa <em class="star">✦</em> Matratze <em class="star">✦</em> Sessel <em class="star">✦</em> Teppich <em class="star">✦</em> Festpreis nach Foto <em class="star">✦</em> Anfahrt inklusive <em class="star">✦</em> Wochenendtermine <em class="star">✦</em></span>
+        </div>
+      </div>
+
       <section class="section intro" aria-labelledby="intro-title">
         <div class="wrap two-column">
           <div class="reveal">
@@ -436,8 +465,8 @@
 
       <section class="section" id="vergleich" aria-labelledby="ba-title">
         <div class="wrap">
-          <div class="section-head reveal" style="margin-inline:auto;text-align:center">
-            <p class="section-kicker" style="justify-content:center">Der Unterschied</p>
+          <div class="section-head centered reveal">
+            <p class="section-kicker">Der Unterschied</p>
             <h2 id="ba-title">Sehen Sie selbst: Vorher / Nachher</h2>
             <p>Ziehen Sie den Regler und erleben Sie, was eine professionelle Tiefenreinigung ausmacht.</p>
           </div>
@@ -685,6 +714,13 @@
               <li>Witten</li>
             </ul>
             <p>Ob Polsterreinigung in Sprockhövel, Sofareinigung in Wuppertal oder Matratzenreinigung in Hattingen: Sie bekommen einen klaren Festpreis, einen zuverlässigen Termin und ein sauberes Ergebnis – ohne Vermittlungsplattform und ohne Callcenter, direkt vom Inhaber.</p>
+            <div class="owner-card">
+              <span class="owner-avatar" aria-hidden="true">M</span>
+              <span>
+                <strong>Marcello – Inhaber</strong>
+                <p>Sie schreiben direkt mit mir: von der Fotoanfrage bis zur Abnahme vor Ort.</p>
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -785,12 +821,52 @@
           document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
         }
 
+        var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
         var ba = document.getElementById("ba");
         if (ba) {
           var range = ba.querySelector(".ba-range");
           var set = function (v) { ba.style.setProperty("--pos", v + "%"); };
           range.addEventListener("input", function () { set(range.value); });
           set(range.value);
+
+          if (!reduced && "IntersectionObserver" in window) {
+            var wiggled = false;
+            var baIo = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting && !wiggled) {
+                  wiggled = true;
+                  baIo.unobserve(ba);
+                  var start = null;
+                  var wiggle = function (ts) {
+                    if (!start) start = ts;
+                    var t = (ts - start) / 1400;
+                    if (t >= 1) { range.value = 50; set(50); return; }
+                    var v = 50 + Math.sin(t * Math.PI * 2) * 16 * (1 - t);
+                    range.value = v;
+                    set(v);
+                    requestAnimationFrame(wiggle);
+                  };
+                  requestAnimationFrame(wiggle);
+                }
+              });
+            }, { threshold: 0.6 });
+            baIo.observe(ba);
+          }
+        }
+
+        var scene = document.querySelector(".hero-scene");
+        if (scene && !reduced && window.matchMedia("(pointer: fine)").matches) {
+          var visual = document.querySelector(".hero-visual");
+          visual.addEventListener("mousemove", function (e) {
+            var r = visual.getBoundingClientRect();
+            var x = (e.clientX - r.left) / r.width - 0.5;
+            var y = (e.clientY - r.top) / r.height - 0.5;
+            scene.style.transform = "rotateY(" + (x * 7) + "deg) rotateX(" + (y * -7) + "deg)";
+          });
+          visual.addEventListener("mouseleave", function () {
+            scene.style.transform = "";
+          });
         }
       })();
     </script>

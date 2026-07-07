@@ -55,4 +55,4 @@ Mindestauftragswert: 79 €.
 - `styles.css` – responsives Styling (helles, sauberes Design)
 - `impressum.html` – Impressum
 - `datenschutz.html` – Datenschutzerklärung
-- `assets/` – Platz für Bilder (z. B. Vorher-/Nachher-Fotos)
+- `couchklar-logo.jpg`, `favicon.svg`, `sofa-vorher-nachher.jpg`, `reinigung-vor-ort.jpg`, `*.woff2` – Bilder, Logo und Schriften (alle im Hauptverzeichnis, passend zum GitHub-Upload)
